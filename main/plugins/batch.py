@@ -7,7 +7,7 @@ Plugin for both public & private channels!
 
 import time, os, asyncio
 
-from .. import bot as Drone
+from .. import bot as katandika2022
 from .. import userbot, Bot, AUTH
 from .. import FORCESUB as fs
 from main.plugins.pyroplug import check, get_bulk_msg
@@ -30,7 +30,7 @@ async def get_pvt_content(event, chat, id):
     msg = await userbot.get_messages(chat, ids=id)
     await event.client.send_message(event.chat_id, msg) 
     
-@Drone.on(events.NewMessage(incoming=True, from_users=AUTH, pattern='/batch'))
+@katandika2022.on(events.NewMessage(incoming=True, from_users=AUTH, pattern='/batch'))
 async def _batch(event):
     if not event.is_private:
         return
@@ -42,7 +42,7 @@ async def _batch(event):
         return       
     if f'{event.sender_id}' in batch:
         return await event.reply("You've already started one batch, wait for it to complete you dumbfuck owner!")
-    async with Drone.conversation(event.chat_id) as conv: 
+    async with katandika2022.conversation(event.chat_id) as conv: 
         if s != True:
             await conv.send_message("Send me the message link you want to start saving from, as a reply to this message.", buttons=Button.force_reply())
             try:
@@ -62,8 +62,8 @@ async def _batch(event):
                 return await conv.send_message("Cannot wait more longer for your response!")
             try:
                 value = int(_range.text)
-                if value > 100:
-                    return await conv.send_message("You can only get upto 100 files in a single batch.")
+                if value > 200:
+                    return await conv.send_message("You can only get upto 200 files in a single batch.")
             except ValueError:
                 return await conv.send_message("Range must be an integer!")
             s, r = await check(userbot, Bot, _link)
@@ -85,6 +85,10 @@ async def run_batch(userbot, client, sender, link, _range):
             timer = 10
         if i < 100 and i > 50:
             timer = 15
+        if i < 150 and i > 100:
+            timer = 20
+        if i < 200 and i > 150:
+            timer = 25
         if not 't.me/c/' in link:
             if i < 25:
                 timer = 2
