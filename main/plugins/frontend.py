@@ -2,7 +2,7 @@
 
 import time, os
 
-from .. import bot as Drone
+from .. import bot as katandika2022
 from .. import userbot, Bot
 from .. import FORCESUB as fs
 from main.plugins.pyroplug import get_msg
@@ -20,7 +20,7 @@ message = "Send me the message link you want to start saving from, as a reply to
 # Make these codes shorter and clean
 # ofc will never do it. 
 
-@Drone.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+@katandika2022.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def clone(event):
     if event.is_reply:
         reply = await event.get_reply_message()
